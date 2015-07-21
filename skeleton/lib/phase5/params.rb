@@ -11,12 +11,15 @@ module Phase5
     # passed in as a hash to `Params.new` as below:
     def initialize(req, route_params = {})
       @params = {}
+      route_params.each do |key, value|
+        @params[key] = value
+      end
       parse_www_encoded_form(req.query_string) if req.query_string
       parse_www_encoded_form(req.body) if req.body
     end
 
     def [](key)
-      @params[key.to_s]
+      @params[key.to_s] || @params[key.to_sym]
     end
 
     # this will be useful if we want to `puts params` in the server log
