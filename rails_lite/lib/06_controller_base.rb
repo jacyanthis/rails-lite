@@ -6,14 +6,35 @@ require 'active_support'
 require 'active_support/core_ext'
 require 'active_support/inflector'
 require 'json'
+require 'securerandom'
 
 class ControllerBase
   attr_reader :req, :res, :params
+
+  def self.protect_from_forgery
+    @@protect_from_forgery = true
+  end
+
+  def verify_authenticity_token
+    unless req.request_method == "GET" || valid_auth_token?
+      raise "invalid authenticity token"
+    end
+  end
+
+  def valid_auth_token?
+    params["authenticity_token"] &&
+      params["authenticity_token"] == session["authenticity_token"]
+  end
+
+  def form_authenticity_token
+    session["authenticity_token"] = SecureRandom.urlsafe_base64(16)
+  end
 
   def initialize(req, res, route_params = {})
     @req = req
     @res = res
     @params = Params.new(req, route_params)
+    verify_authenticity_token if @@protect_from_forgery
   end
 
   # Helper method to alias @already_built_response

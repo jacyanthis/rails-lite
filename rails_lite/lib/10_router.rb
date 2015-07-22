@@ -1,4 +1,3 @@
-
 class Router
   attr_reader :routes
 

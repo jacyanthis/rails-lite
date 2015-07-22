@@ -10,11 +10,11 @@ class Session
   end
 
   def find_cookie(req)
-    our_cookie = {}
     req.cookies.each do |cookie|
-      our_cookie = JSON.parse(cookie.value) if cookie.name == '_rails_lite_app'
+      return JSON.parse(cookie.value) if cookie.name == '_rails_lite_app'
     end
-    our_cookie
+
+    {}
   end
 
   def delete(key)
@@ -34,6 +34,7 @@ class Session
   # add to the responses cookies
   def store_session(res)
     new_cookie = WEBrick::Cookie.new('_rails_lite_app', @cookie.to_json)
+    new_cookie.path = "/"
     res.cookies << new_cookie
   end
 end

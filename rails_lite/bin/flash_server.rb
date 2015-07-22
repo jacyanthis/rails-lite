@@ -4,6 +4,8 @@ require_relative '../lib/06_controller_base'
 
 class MyController < ControllerBase
   def go
+    protect_from_forgery
+    
     session["count"] ||= 0
     session["count"] += 1
     flash["#{session["count"]}"] = "Flash: #{session["count"]}."
