@@ -55,7 +55,7 @@ class ControllerBase
   # use ERB and binding to evaluate templates
   # pass the rendered html to render_content
   def render(template_name)
-    template = File.read("app/views/#{self.class.to_s.underscore}/#{template_name}.html.erb")
+    template = File.read("views/#{self.class.to_s.underscore}/#{template_name}.html.erb")
     render_content(ERB.new(template).result(binding), "text/html")
   end
 

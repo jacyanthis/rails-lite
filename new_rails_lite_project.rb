@@ -17,9 +17,14 @@ rails_lite_path = project_path + "/rails_lite"
 system 'mkdir', '-p', project_path + "/rails_lite"
 
 #copies rails_lite library into project
-FileUtils.cp_r 'rails_lite/lib/.', rails_lite_path
+FileUtils.cp_r 'rails_lite_base/lib/.', rails_lite_path
 
 #creates directories for controllers and models in app directory
 system 'mkdir', '-p', project_path + "/app"
 system 'mkdir', '-p', project_path + "/app/controllers"
 system 'mkdir', '-p', project_path + "/app/models"
+system 'mkdir', '-p', project_path + "/app/views"
+
+#creates empty .sql file
+sql_file = File.new(project_path + "/" + project_name + ".sql", "w")
+sql_file.puts("# please enter sql here to create tables")

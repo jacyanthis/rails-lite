@@ -1,7 +1,9 @@
 require 'sqlite3'
 
 ROOT_FOLDER = File.join(File.dirname(__FILE__), '..')
+puts "root folder is #{ROOT_FOLDER}"
 SQL_FILE = Dir['*'].select {|x| x =~ /.*.sql/ }.first
+puts "regex is" + /(.*).sql/.match(SQL_FILE)[1]
 DB_FILE = Dir['*'].select {|x| x =~ /.*.db/ }.first ||
   /(.*).sql/.match(SQL_FILE)[1] + ".db"
 
