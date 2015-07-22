@@ -36,4 +36,8 @@ FileUtils.cp 'rails_lite_base/server.rb', project_path + "/server.rb"
 FileUtils.cp 'rails_lite_base/Gemfile', project_path + "/Gemfile"
 
 # copies ApplicationController
-FileUtils.cp 'rails_lite/application_controller.rb', project_path + "/controllers/application_controller.rb"
+path = project_path + "/controllers/application_controller.rb"
+FileUtils.cp 'rails_lite_base/application_controller.rb', path
+
+# copies README
+FileUtils.cp 'README.md', project_path
