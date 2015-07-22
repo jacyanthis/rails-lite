@@ -11,6 +11,6 @@ There's an example project in the `projects` folder that simply stores the names
     - Including lazy evaluation
   - Associations (e.g. `belongs_to`, `has_many_through`)
 - Session stored in cookies
-  - Including flash/flash.now
+  - Including `flash`/`flash.now`
 - CSRF protection by default
 - Integration with Webrick
