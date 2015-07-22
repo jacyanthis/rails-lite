@@ -1,7 +1,5 @@
 require_relative 'db_connection'
 require 'active_support/inflector'
-# NB: the attr_accessor we wrote in phase 0 is NOT used in the rest
-# of this project. It was only a warm up.
 
 class SQLObject
   def self.columns
@@ -72,7 +70,6 @@ class SQLObject
   end
 
   def initialize(params = {})
-    puts params
     params.each do |attr_name, value|
       attr_name = attr_name.to_sym
 
