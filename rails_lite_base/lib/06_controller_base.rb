@@ -10,6 +10,7 @@ require 'securerandom'
 
 class ControllerBase
   attr_reader :req, :res, :params
+  @@protect_from_forgery = false
 
   def self.protect_from_forgery
     @@protect_from_forgery = true

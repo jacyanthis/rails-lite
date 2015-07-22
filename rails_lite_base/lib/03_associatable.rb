@@ -71,9 +71,10 @@ module Associatable
   end
 
   def includes(assoc_name)
-    puts "starting first query..."
+    # PRINT STATEMENTS INCLUDES FOR TESTING NUMBER OF QUERIES MADE BY INCLUDES
+    # puts "starting first query..."
     original_objects = self.all
-    puts "first query done"
+    # puts "first query done"
 
     included_options = assoc_options[assoc_name]
     included_model_class = included_options.model_class
@@ -81,7 +82,7 @@ module Associatable
     included_other_key = included_options.other_key
     self_key = included_options.self_key
 
-    puts "starting second query..."
+    # puts "starting second query..."
     second_query = DBConnection.execute(<<-SQL)
       SELECT
         *
@@ -92,7 +93,7 @@ module Associatable
     included_objects = second_query.map do |result|
       included_model_class.new(result)
     end
-    puts "second query done"
+    # puts "second query done"
 
     original_objects.each do |original|
       original.define_singleton_method(assoc_name) do

@@ -70,7 +70,6 @@ class SQLObject
   end
 
   def initialize(params = {})
-    puts params
     params.each do |attr_name, value|
       attr_name = attr_name.to_sym
 

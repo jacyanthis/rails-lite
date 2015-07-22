@@ -163,14 +163,14 @@ describe 'Associatable' do
     end
 
     it 'includes properly' do
-      puts "I'm beginning the includes test case. You should see only two queries."
+      # puts "I'm beginning the includes test case. You should see only two queries."
 
       humans = Human.includes(:cats)
       humans.each do |human|
         human.cats
       end
 
-      puts "I finished the includes test case! Did you only see two queries?"
+      # puts "I finished the includes test case! Did you only see two queries?"
     end
   end
 end

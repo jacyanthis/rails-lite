@@ -6,6 +6,8 @@ There's an example project in the `projects` folder that simply stores the names
 
 # Functionality
 - SQLite3 database storage
+- *Very* basic migration functionality is included
+  - Currently, it's better to write the SQL table information directly
 - Object relational mapping
   - Querying through Ruby (e.g. `where`, `includes`)
     - Including lazy evaluation

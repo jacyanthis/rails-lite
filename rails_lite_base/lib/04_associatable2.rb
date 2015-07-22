@@ -8,7 +8,6 @@ module Associatable
       source_options = through_options.model_class.assoc_options[source_name]
 
       through_table = through_options.model_class.table_name
-      through_self_key = through_options.self_key
       through_other_key = through_options.other_key
 
       source_table = source_options.model_class.table_name
@@ -21,16 +20,14 @@ module Associatable
 
         where_line = through.map do |through_object|
           through_other_values << through_object.send(through_other_key)
-          "#{through_table}.#{through_other_key} = ?"
         end.join(" OR ")
 
         through_other_values
       else
-        puts "through is: #{through.inspect}"
         through_other_value = through.send(through_other_key)
         where_line = "#{through_table}.#{through_other_key} = ?"
       end
-      
+
       results_hash_array = DBConnection.execute(<<-SQL, *through_other_value)
         SELECT
           #{source_table}.*
