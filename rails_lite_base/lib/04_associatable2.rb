@@ -1,9 +1,6 @@
 require_relative '03_associatable'
 
-# Phase IV
 module Associatable
-  # Remember to go back to 04_associatable to write ::assoc_options
-
   def has_through(name, through_name, source_name, setting)
     through_options = assoc_options[through_name]
 
@@ -33,7 +30,7 @@ module Associatable
         through_other_value = through.send(through_other_key)
         where_line = "#{through_table}.#{through_other_key} = ?"
       end
-      # through_other_value = self.send(through_name).send(through_other_key)
+      
       results_hash_array = DBConnection.execute(<<-SQL, *through_other_value)
         SELECT
           #{source_table}.*

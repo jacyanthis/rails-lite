@@ -7,6 +7,7 @@ DBConnection.reset
 
 router = Router.new
 router.draw do
+  get Regexp.new("^/$"), TurtlesController, :index
   get Regexp.new("^/turtles$"), TurtlesController, :index
   get Regexp.new("^/turtles/new$"), TurtlesController, :new
   post Regexp.new("^/turtles$"), TurtlesController, :create
