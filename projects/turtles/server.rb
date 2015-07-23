@@ -3,8 +3,6 @@ Dir['app/controllers/*.rb'].each {|file| require_relative file }
 Dir['app/models/*.rb'].each {|file| require_relative file }
 Dir['app/views/*.rb'].each {|file| require_relative file }
 
-DBConnection.reset
-
 router = Router.new
 router.draw do
   get Regexp.new("^/$"), TurtlesController, :index

@@ -18,12 +18,13 @@ def run_sql(sql_file)
 end
 
 Dir['db/migrations/*.rb'].each do |migration_name|
-  # unless finished_migrations[migration_name]
-    load "#{migration_name}"
+  unless finished_migrations["#{migration_name}\n"]
     match_data = /db\/migrations\/(\w+).rb/.match(migration_name)
     file_name_base = match_data[1]
-    # file_name_base.camelcase.constantize.new(file_name_base).up
+    file_name_base.camelcase.constantize.new(file_name_base).up
     run_sql("db/sql_files/#{file_name_base}.sql")
-    File.write("db/finished_migrations.txt", "#{migration_name}")
-  # end
+    open("db/finished_migrations.txt", 'a') { |f|
+      f.puts "#{migration_name}"
+    }
+  end
 end
