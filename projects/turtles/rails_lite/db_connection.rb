@@ -20,6 +20,8 @@ class DBConnection
       "cat '#{SQL_FILE}' | sqlite3 '#{DB_FILE}'"
     ]
 
+    puts "cat '#{SQL_FILE}' | sqlite3 '#{DB_FILE}'"
+
     commands.each { |command| `#{command}` }
     DBConnection.open(DB_FILE)
   end

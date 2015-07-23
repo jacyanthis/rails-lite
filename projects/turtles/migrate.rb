@@ -9,12 +9,21 @@ finished_migrations_array.each do |migration_name|
   finished_migrations[migration_name] = true
 end
 
+def run_sql(sql_file)
+  match_data = /^\S+\/(\w+)$/.match(Dir.pwd)
+  db_file = match_data[1] + ".db"
+  puts `cat '#{sql_file}' | sqlite3 '#{db_file}'`
+  # puts "cat 'turtles.sql' | sqlite3 '#{db_file}'"
+
+end
+
 Dir['db/migrations/*.rb'].each do |migration_name|
-  unless finished_migrations[migration_name]
+  # unless finished_migrations[migration_name]
     load "#{migration_name}"
     match_data = /db\/migrations\/(\w+).rb/.match(migration_name)
     file_name_base = match_data[1]
-    file_name_base.camelcase.constantize.new(file_name_base).up
+    # file_name_base.camelcase.constantize.new(file_name_base).up
+    run_sql("db/sql_files/#{file_name_base}.sql")
     File.write("db/finished_migrations.txt", "#{migration_name}")
-  end
+  # end
 end
