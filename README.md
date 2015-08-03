@@ -2,7 +2,7 @@
 This is a functional, lightweight version of Rails. In the root directory, you can create new projects with `ruby new_rails_lite_project.rb` followed by the project name. This will set up a new directory in the `projects` folder with all the files you need to create a functional web application.
 
 # Example project
-There's an example project in the `projects` folder that simply stores the names of ninja turtles and their teachers, allowing you to add new turtles.
+There's a simple example project in the `projects` folder that stores the names of ninja turtles and their ninja masters.
 
 # Functionality
 - SQLite3 database storage
